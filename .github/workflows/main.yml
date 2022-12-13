@@ -7,6 +7,7 @@ name: AzureLoginSample
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
 
     - name: Log in with Azure
