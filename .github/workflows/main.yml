@@ -1,0 +1,24 @@
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+name: AzureLoginSample
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: Dev
+    steps:
+
+    - name: Log in with Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az account show
+            az storage -h
