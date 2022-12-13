@@ -8,21 +8,27 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Azure.Storage.Queues.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace AZFnctSAProxy
 {
-    public static class GetFile
+    public static class GetConfig
     {
-        [FunctionName("GetFile")]
+        [FunctionName("GetConfig")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "{name}")] HttpRequest req,
-           [Blob("samples/{name}", FileAccess.Read, Connection = "AzureWebJobsStorage")] byte[] myBlob, 
+           [Blob("configs/{name}", FileAccess.Read, Connection = "AzureWebJobsStorage")] byte[] config, 
            string name,
             ILogger log)
         {
             log.LogInformation($"File name: {name}");
 
-            return new FileContentResult(myBlob, "application/octet-stream") { FileDownloadName = name };
+            if(config == null)
+            {
+                return new ObjectResult(JsonConvert.SerializeObject(new {error ="Not found." })) { StatusCode = 404 };
+            }
+
+            return new FileContentResult(config, "application/json") { FileDownloadName = name };
         }
     }
 }
