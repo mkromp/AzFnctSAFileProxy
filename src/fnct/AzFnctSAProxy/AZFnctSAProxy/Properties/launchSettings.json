@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "AZFnctSAProxy": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7124",
+      "launchBrowser": false
+    }
+  }
+}
