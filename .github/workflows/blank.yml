@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'fnappvuxfw3355uwss' # set this to your application's name
+  AZURE_FUNCTIONAPP_NAME: 'fnappzxu6hwsp45aje' # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/fnct/AzFnctSAProxy/AZFnctSAProxy/AZFnctSAProxy.csproj'    # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '6.x'              # set this to the dotnet version to use
 
